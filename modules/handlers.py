@@ -19,8 +19,17 @@ class BaseHandler(tornado.web.RequestHandler):
 
     def render_template(self, template_name, **kwargs):
         new_template = self.lookup.get_template(template_name)
+        
+        #test
+        print(template_name)
+
+        #def f1(p1):
+        #    print p1
+        #f1(kwargs)
+        #test
+
         contents = new_template.render(**kwargs)
-        #contents = new_template.render(lives="A test life")
+        #contents = new_template.render(lives="A test life", lives_again="More lives!")
 
         if contents:
             self.write(contents)
@@ -39,7 +48,7 @@ class LifeOverviewHandler(BaseHandler):
     def get(self):
         handler_lives = "Sample Life Code"
         #lives = self.db.query("SELECT * FROM lives ORDER BY lives_name")  
-        self.render_template("life-overview.html", lives=handler_lives)      
+        self.render_template("life-overview.html", dict(lives="A test life", lives_again="More lives!"))      
 
 tornado_handlers = [
     (r"/", MainHandler),

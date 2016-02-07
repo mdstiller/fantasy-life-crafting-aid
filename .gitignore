@@ -1,0 +1,7 @@
+*.pyc
+*.html.py
+html/tmp
+html/tmp/*
+html/tmp/mako_modules/*
+.idea/*
+.DS_Store

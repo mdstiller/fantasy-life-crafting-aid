@@ -15,8 +15,7 @@ import tornado.web
 import tornado.autoreload
 import unicodedata
 
-from modules import handlers
-from modules import config
+from modules import config, handlers
 
 from tornado.options import define, options
 from tornado.options import define, options

@@ -43,8 +43,8 @@ def main():
 
     tornado.autoreload.start()
 
-    for filename in os.listdir(config.tornado_settings["template_path"]):
-        tornado.autoreload.watch(os.path.abspath(os.path.join(config.tornado_settings["template_path"], filename)))
+    for filename in os.listdir(config.mako_path):
+        tornado.autoreload.watch(os.path.abspath(os.path.join(config.mako_path, filename)))
     tornado.ioloop.IOLoop.current().start()
 
 if __name__ == "__main__":

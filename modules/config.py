@@ -1,5 +1,9 @@
+import os
+
+code_root = os.path.abspath(os.path.dirname(__file__)).replace("/modules", "")
+
 tornado_settings = dict(
-    template_path="/home/michael/programming/fantasy-life-crafting-aid/html",
-    static_path="/home/michael/programming/fantasy-life-crafting-aid/static",
+    static_path = code_root + "/static",
     debug=True,
 )
+mako_path = code_root + '/html'

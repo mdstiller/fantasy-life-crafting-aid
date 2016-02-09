@@ -1,11 +1,18 @@
 <%inherit file="theme.html"/>
+<script>
+% if ingredientjson:
+	var ingredientjson = ${ingredientjson};
+% else:
+	var ingredientjson = {};
+% endif
+</script>
 <div class="content-container">
 	<div class="content-header">
 		TODO: Generate list of all Lives that allow for crafting.
 	</div>
 	<div class="content">
 	% for ingredient in (ingredients):
-		<a class="ingredient-tooltip" id='ingredient-${ingredient.ingredients_id}'>${ingredient.ingredients_name}</a><br>	
+		<a class="ingredient-tooltip" data-id='${ingredient.ingredients_id}'>${ingredient.ingredients_name}</a><br>	
 	% endfor
 	</div>
 </div>

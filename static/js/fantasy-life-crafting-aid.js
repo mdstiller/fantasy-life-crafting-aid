@@ -1,19 +1,23 @@
 jQuery(function($){
-	$("#ingredient-1").qtip({
+	$(".ingredient-tooltip").qtip({
         style: { classes: 'qtip-wiki' },
         content: {
             text: function(event, api) {
-                api.elements.content.html('Loading...');
-                return $.ajax({
-                    url: '/page/life-ingredient-tooltip?tooltip-ingredients-id=1'
-                    })
-                    	.then(function(content) {
-                        	api.elements.content.html(content);
-                        	}, function(xhr, status, error) {
-                        	api.set('content.text', status + ':  ' + error);
-                        	});
-                        },
-                    title: {text: 'Ingredient Information'}
+                var self = $(this);
+                var body = "";
+                $.each(ingredientjson, function(k, v){
+                    if(v["id"] == self.data('id')){
+                        console.log(v)
+                        body = "Name: " + v["name"] + "</br>";
+                        body += "Found: " + v["found"];
+
+                        api.elements.content.html(body);
+                    }
+                });
+                
+                return body;
+            },
+            title: {text: 'Ingredient Information'}
         }
 	});
 });

@@ -1,5 +1,6 @@
 import tornado.web
 import config
+import simplejson
 
 from mako.lookup import TemplateLookup
 
@@ -42,13 +43,19 @@ class DataEntryHandler(BaseHandler):
 class LifeOverviewHandler(BaseHandler):
     def get(self):
         ingredients_recset = self.db.query("SELECT * FROM ingredients ORDER BY ingredients_name")
-        #ingredients_recset = self.db.query("SELECT COUNT(*) AS total_ingredients FROM ingredients")
         print ingredients_recset[0].ingredients_name
-        #test_data = {
-        #    "lives":"A test life",
-        #    "lives_again":"More lives!"
-        #}
-        self.render_template("life-overview.html", ingredients=ingredients_recset)      
+
+        ui_data = []
+        for row in ingredients_recset:
+            ui_data.append({
+                'id': row.ingredients_id,
+                'name': row.ingredients_name,
+                'found': row.ingredients_found
+            })
+
+        ingredient_json = simplejson.dumps(ui_data)
+
+        self.render_template("life-overview.html", ingredients=ingredients_recset, ingredientjson=ingredient_json)      
 
 class LifeIngredientTooltipHandler(BaseHandler):
     def get(self):       

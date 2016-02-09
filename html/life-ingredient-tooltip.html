@@ -1,0 +1,22 @@
+<div class="democontent">	
+	<img src="/static/images/icons/
+	
+	<%
+	if len(str(ingredients[0].ingredients_id)) == 1:
+		image_name="000" + str(ingredients[0].ingredients_id)
+	endif
+	%>
+
+	${image_name}.png" alt="" width="111" height="170" class="photo left"/>
+	<div class="info">
+		<h1>${ingredients[0].ingredients_name}</h1>
+		<div class="tooltip-description">
+			<p>${ingredients[0].ingredients_description}</p>
+		</div>
+		<div class="tooltip-rarity">
+			<p>Rarity: ${ingredients[0].ingredients_rarity}</p>
+		</div>
+		<div class="tooltip-found">
+			<p>Found: ${ingredients[0].ingredients_found}</p>
+	</div>
+</div>

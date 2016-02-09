@@ -4,7 +4,8 @@
 		TODO: Generate list of all Lives that allow for crafting.
 	</div>
 	<div class="content">
-		<p>${data["lives"]}</p>
-		<p>${data["lives_again"]}</p>
+	% for ingredient in (ingredients):
+		<a class="ingredient-tooltip" id='ingredient-${ingredient.ingredients_id}'>${ingredient.ingredients_name}</a><br>	
+	% endfor
 	</div>
 </div>
